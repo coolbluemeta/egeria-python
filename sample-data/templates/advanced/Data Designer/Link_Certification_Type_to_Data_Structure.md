@@ -1,3 +1,5 @@
+___
+
 ## Link Certification Type to Data Structure
 > Link a data structure to a certification type. In defining a certification type,  this assigns the data structure to this type of certification.
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___

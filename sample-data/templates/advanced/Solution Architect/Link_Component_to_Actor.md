@@ -1,3 +1,5 @@
+___
+
 ## Link Component to Actor
 > Links a solution component to an actor role via the SolutionComponentActor relationship.
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___

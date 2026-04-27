@@ -1,3 +1,5 @@
+___
+
 ## Link SubComponent
 > Links a child compoent to a parent component.
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___

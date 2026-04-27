@@ -1,3 +1,5 @@
+___
+
 ## Link Data Value Composition
 > Link a data value specification, DataClass, DataGrain,  to a referenceable element providing a definition.
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___

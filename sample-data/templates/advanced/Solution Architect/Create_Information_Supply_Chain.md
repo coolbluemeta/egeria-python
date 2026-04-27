@@ -1,7 +1,9 @@
+___
+
 ## Create Information Supply Chain
 > Creates or updates an information supply chain — a description of the flow of a particular type of data across a digital landscape.
 
-## Display Name
+### Display Name
 >	**Input Required**: True
 
 >	**Attribute Type**: Simple
@@ -105,7 +107,7 @@
 >	**Description**: Scope of the definition or element.
 
 
-## Search Keywords
+### Search Keywords
 >	**Input Required**: False
 
 >	**Attribute Type**: Simple List
@@ -294,6 +296,10 @@
 
 >	**Description**: A dictionary of relationship attributes to establish the parent relationship.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Parent Relationship Type Name
 >	**Input Required**: False
@@ -327,6 +333,10 @@
 >	**Attribute Type**: Dictionary
 
 >	**Description**: Additional Properties  allow arbitrary properties not defined in the type definitions to be added to any referenceable element.
+
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
 
 
 ### Class Word Classification
@@ -406,6 +416,10 @@
 
 >	**Description**: Combined classification from 0435. Applied to Referenceable. Structure: {point_type: str, name: str, description: str}. point_type is one of: PolicyAdministrationPoint, PolicyDecisionPoint, PolicyEnforcementPoint, PolicyInformationPoint, PolicyRetrievalPoint. A Referenceable may have multiple policy management point classifications simultaneously.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Prime Word Classification
 >	**Input Required**: False
@@ -450,6 +464,10 @@
 
 >	**Description**: Estimated data volumes for the information supply chain, as a map of metric name to value (e.g. records per day).
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### User Defined Status
 >	**Input Required**: False
@@ -468,6 +486,10 @@
 
 >	**Alternative Labels**: classification
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Anchor Scope Name
 >	**Input Required**: False
@@ -484,3 +506,9 @@
 
 >	**Description**: Provide supplementary information to the element using the structure of a glossary term
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
+
+___

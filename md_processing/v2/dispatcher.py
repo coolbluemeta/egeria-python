@@ -9,7 +9,7 @@ from loguru import logger
 from pyegeria import EgeriaTech, PyegeriaException, print_basic_exception
 from md_processing.v2.extraction import DrECommand
 from md_processing.v2.processors import AsyncBaseCommandProcessor
-from md_processing.md_processing_utils.md_processing_constants import COLLECTION_SUBTYPES, PROJECT_SUBTYPES
+from md_processing.md_processing_utils.md_processing_constants import COLLECTION_SUBTYPES, PROJECT_SUBTYPES, find_alternate_names
 from md_processing.v2.collection_manager_processor import CollectionManagerProcessor
 from md_processing.v2.project import ProjectProcessor
 from md_processing.v2.view import ViewProcessor
@@ -46,7 +46,15 @@ class V2Dispatcher:
 
         command_key = f"{command.verb} {command.object_type}"
         processor_cls = self.processors.get(command_key)
-        
+
+        # If not found, try to resolve via alternate names
+        if not processor_cls:
+            canonical_key = find_alternate_names(command_key)
+            if canonical_key:
+                processor_cls = self.processors.get(canonical_key)
+                if processor_cls:
+                    logger.debug(f"Resolved command '{command_key}' to canonical '{canonical_key}'")
+
         if not processor_cls:
             # Fuzzy match: strip prepositions (to, from, etc.) to bridge gap between MD and registry
             prepositions = {"to", "from", "at", "in", "on", "for", "with", "by", "into", "onto", "of"}

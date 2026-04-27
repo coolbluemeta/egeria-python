@@ -6834,32 +6834,32 @@ class ServerClient(BaseServerClient):
 
     @dynamic_catch
     async def _async_create_attachment_body_request(self, url: str, prop: Optional[list[str]] = None,
-                                                    body: Optional[dict | NewAttachmentRequestBody] = None) -> dict:
+                                                    body: Optional[dict | NewAttachmentRequestBody] = None) -> str:
         validated_body = self.validate_new_attachment_request(body, prop)
         json_body = validated_body.model_dump_json(indent=2, exclude_none=True)
         logger.info(json_body)
         response = await self._async_make_request("POST", url, json_body)
         logger.info(response.json())
-        return response.json()
+        return response.json().get("guid")
 
     @dynamic_catch
     async def _async_create_element_body_request(self, url: str, prop: Optional[list[str]] = None,
-                                                 body: Optional[dict | NewElementRequestBody] = None) -> dict:
+                                                 body: Optional[dict | NewElementRequestBody] = None) -> str:
         validated_body = self.validate_new_element_request(body, prop)
         json_body = validated_body.model_dump_json(indent=2, exclude_none=True)
         logger.info(json_body)
         response = await self._async_make_request("POST", url, json_body, is_json=True)
         logger.info(response.json())
-        return response.json()
+        return response.json().get("guid")
 
     @dynamic_catch
-    async def _async_create_element_from_template(self, url: str, body: Optional[dict | TemplateRequestBody] = None) -> dict:
+    async def _async_create_element_from_template(self, url: str, body: Optional[dict | TemplateRequestBody] = None) -> str:
         validated_body = self.validate_new_element_from_template_request(body)
         json_body = validated_body.model_dump_json(indent=2, exclude_none=True)
         logger.info(json_body)
         response = await self._async_make_request("POST", url, json_body, is_json=True)
         logger.info(response.json())
-        return response.json()
+        return response.json().get("guid")
 
     @dynamic_catch
     async def _async_update_element_body_request(self, url: str, prop: Optional[list[str]] = None,

@@ -1,3 +1,5 @@
+___
+
 ## Link Monitored Resource
 > Links a Notification Type to a Referenceable that it monitors.
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___

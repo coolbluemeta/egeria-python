@@ -1,7 +1,9 @@
+___
+
 ## Create Project
 > Creates or updates a project. Projects organize a specific activity, controlling resources and costs to achieve defined goals.
 
-## Display Name
+### Display Name
 >	**Input Required**: True
 
 >	**Attribute Type**: Simple
@@ -197,7 +199,7 @@
 >	**Description**: A list of purposes for this project (array&lt;string&gt;). Note: distinct from Collection.purpose (string, singular) which is a separate attribute on Collection Base.
 
 
-## Search Keywords
+### Search Keywords
 >	**Input Required**: False
 
 >	**Attribute Type**: Simple List
@@ -386,6 +388,10 @@
 
 >	**Description**: A dictionary of relationship attributes to establish the parent relationship.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Parent Relationship Type Name
 >	**Input Required**: False
@@ -419,6 +425,10 @@
 >	**Attribute Type**: Dictionary
 
 >	**Description**: Additional Properties  allow arbitrary properties not defined in the type definitions to be added to any referenceable element.
+
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
 
 
 ### Class Word Classification
@@ -498,6 +508,10 @@
 
 >	**Description**: Combined classification from 0435. Applied to Referenceable. Structure: {point_type: str, name: str, description: str}. point_type is one of: PolicyAdministrationPoint, PolicyDecisionPoint, PolicyEnforcementPoint, PolicyInformationPoint, PolicyRetrievalPoint. A Referenceable may have multiple policy management point classifications simultaneously.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Prime Word Classification
 >	**Input Required**: False
@@ -552,6 +566,10 @@
 
 >	**Alternative Labels**: classification
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Anchor Scope Name
 >	**Input Required**: False
@@ -568,3 +586,9 @@
 
 >	**Description**: Provide supplementary information to the element using the structure of a glossary term
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
+
+___

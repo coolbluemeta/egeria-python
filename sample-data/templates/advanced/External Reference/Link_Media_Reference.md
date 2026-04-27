@@ -1,3 +1,5 @@
+___
+
 ## Link Media Reference
 > Link a related media reference to a referenceable via the MediaReferenceLink relationship.
 >
@@ -19,16 +21,6 @@
 >	**Attribute Type**: Reference Name
 
 >	**Description**: The related media reference to link to.
-
-
-### Label
->	**Input Required**: False
-
->	**Attribute Type**: Simple
-
->	**Description**: A label used to identify or categorise a relationship link.
-
->	**Alternative Labels**: Wire Label
 
 
 ### Media Id
@@ -57,20 +49,12 @@
 >	**Description**: An id associated with the media usage when not using a standard valid value.
 
 
-### Journal Entry
+### Effective Time
 >	**Input Required**: False
 
 >	**Attribute Type**: Simple
 
->	**Description**: A text entry into a journal.
-
-
-### Description
->	**Input Required**: False
-
->	**Attribute Type**: Simple
-
->	**Description**: A description.
+>	**Description**: An ISO-8601 string representing the time to use for evaluating effectivity of the elements related to this one.
 
 
 ### Effective From
@@ -78,15 +62,7 @@
 
 >	**Attribute Type**: Simple
 
->	**Description**: The beginning of when an element is viewable.
-
-
-### Effective Time
->	**Input Required**: False
-
->	**Attribute Type**: Simple
-
->	**Description**: The time at which an element must be effective in order to be returned by the request.
+>	**Description**: A string in ISO-8601 format that defines the when an element becomes effective (visible).
 
 
 ### Effective To
@@ -94,63 +70,7 @@
 
 >	**Attribute Type**: Simple
 
->	**Description**: The ending time at which an element is visible.
+>	**Description**: A string in ISO-8601 format that defines the when an element is no longer effective (visible).
 
 
-### External Source GUID
->	**Input Required**: False
-
->	**Attribute Type**: GUID
-
->	**Description**: The unique identifier of an external source.
-
-
-### External Source Name
->	**Input Required**: False
-
->	**Attribute Type**: Simple
-
->	**Description**: The name of an external source
-
-
-### For Duplicate Processing
->	**Input Required**: False
-
->	**Attribute Type**: Bool
-
->	**Description**: Flag indicating if the request is to support duplicate processing.
-
-
-### For Lineage
->	**Input Required**: False
-
->	**Attribute Type**: Bool
-
->	**Description**: Flag indicating if the request is to support lineage.
-
-
-### Request ID
->	**Input Required**: False
-
->	**Attribute Type**: Simple
-
->	**Description**: A user provided or system generated request id for a conversation.
-
-
-### Anchor Scope IDs
->	**Input Required**: False
-
->	**Attribute Type**: Reference Name List
-
->	**Description**: A list of IDs that are anchor scopes for this element.
-
-
-### Make Anchor
->	**Input Required**: False
-
->	**Attribute Type**: Bool
-
->	**Description**: Is the element at end2 an anchor to end1?
-
->	**Default Value**: false
-
+___

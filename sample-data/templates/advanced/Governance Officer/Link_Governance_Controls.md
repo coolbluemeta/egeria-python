@@ -1,3 +1,5 @@
+___
+
 ## Link Governance Controls
 > Link peer governance controls with the GovernanceControlLink relationship. Controls types are: GovernanceRule, GovernanceProcess, GovernanceResponsibility, GovernanceProcedure, SecurityAccessControl, SecurityGroup.
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___
