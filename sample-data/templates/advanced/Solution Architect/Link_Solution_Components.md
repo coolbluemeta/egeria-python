@@ -1,3 +1,5 @@
+___
+
 ## Link Solution Components
 > Links or unlinks two solution compoents.
 
@@ -132,3 +134,5 @@
 
 >	**Description**: The qualified names of the information supply chains that this wire implements. From SolutionLinkingWire (0735).
 
+
+___

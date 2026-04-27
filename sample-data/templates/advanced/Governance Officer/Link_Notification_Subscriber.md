@@ -1,3 +1,5 @@
+___
+
 ## Link Notification Subscriber
 > Links a Referenceable as a subscriber to a NotificationType, defining the subscription parameters.
 
@@ -152,3 +154,5 @@
 
 >	**Description**: Zones scope visibility of elements to different users.
 
+
+___

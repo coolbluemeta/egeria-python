@@ -1,3 +1,5 @@
+___
+
 ## Link Digital Subscriber
 > Attach or detach a subscriber to a subscription. Subscriber can be any type of element.
 >
@@ -130,3 +132,5 @@
 
 >	**Default Value**: false
 
+
+___

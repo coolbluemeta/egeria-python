@@ -1,3 +1,5 @@
+___
+
 ## Attach Rating
 > Attach a star rating to a referenceable element via the AttachedRating relationship.
 
@@ -134,3 +136,5 @@
 
 >	**Default Value**: false
 
+
+___

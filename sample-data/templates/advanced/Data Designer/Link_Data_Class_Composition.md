@@ -1,3 +1,5 @@
+___
+
 ## Link Data Class Composition
 > Link a child data class to a parent data class. 
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___

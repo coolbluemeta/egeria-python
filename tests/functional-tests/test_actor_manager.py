@@ -162,10 +162,10 @@ class TestActorManager:
             token = actor_client.create_egeria_bearer_token(self.good_user_2, "secret")
             start_time = time.perf_counter()
 
-            search_string = "Department::3067"
+            search_string = "team-hr"
             response = actor_client.find_actor_profiles(
                 search_string,
-                output_format="DICT", report_spec = "Actor-Profiles", metadata_element_type="Organization"
+                output_format="MERMAID", report_spec = "Org-Chart",graph_depth=10
             )
             duration = time.perf_counter() - start_time
 
@@ -623,12 +623,23 @@ class TestActorManager:
     def test_contribution_record_crud(self):
         """Test CRUD operations for contribution records"""
         actor_client = None
-        actor_profile_guid = "62c20189-1c8f-4b2e-ad44-f75f75ddcd81"
+        created_guids = []
         try:
             actor_client = ActorManager(self.good_view_server_1, self.good_platform1_url, user_id=self.good_user_2)
             actor_client.create_egeria_bearer_token(self.good_user_2, "secret")
 
-            # 1. Create
+            # 1. Create an Actor Profile first
+            actor_qname = self._unique_qname("ContribTestActor")
+            actor_guid = actor_client.create_actor_profile({
+                "class": "NewElementRequestBody",
+                "properties": {
+                    "class": "ActorProfileProperties",
+                    "qualifiedName": actor_qname
+                }
+            })
+            created_guids.append(actor_guid)
+
+            # 2. Create Contribution Record
             qname = self._unique_qname("TestContribution")
             body = NewAttachmentRequestBody(
                 class_="NewAttachmentRequestBody",
@@ -638,14 +649,14 @@ class TestActorManager:
                     "karmaPoints": 100
                 }
             )
-            guid = actor_client.create_contribution_record(actor_profile_guid, body)
+            guid = actor_client.create_contribution_record(actor_guid, body)
             assert type(guid) is str
 
-            # 2. Retrieve by GUID
+            # 3. Retrieve by GUID
             record = actor_client.get_contribution_record_by_guid(guid, GetRequestBody(class_="GetRequestBody"))
             assert record is not None
 
-            # 3. Update
+            # 4. Update
             update_body = UpdateElementRequestBody(
                 class_="UpdateElementRequestBody",
                 properties={
@@ -655,12 +666,15 @@ class TestActorManager:
             )
             actor_client.update_contribution_record(guid, update_body)
 
-            # 4. Find
+            # 5. Find
             results = actor_client.find_contribution_records(SearchStringRequestBody(class_="SearchStringRequestBody", search_string=qname))
             assert len(results) > 0
 
-            # 5. Delete
-            actor_client.delete_contribution_record(guid, DeleteRelationshipRequestBody(class_="DeleteRelationshipRequestBody"))
+            # 6. Delete
+            actor_client.delete_contribution_record(guid)
+
+            # Cleanup actor
+            actor_client.delete_actor_profile(actor_guid, DeleteElementRequestBody(class_="DeleteElementRequestBody"))
 
         except Exception as e:
             print(f"Error in contribution record test: {e}")
@@ -763,7 +777,7 @@ class TestActorManager:
             token = actor_client.create_egeria_bearer_token(self.good_user_2, "secret")
             start_time = time.perf_counter()
 
-            search_string = "Project"
+            search_string = "TeamLeader"
             response = actor_client.find_actor_roles(
                 search_string = search_string,
                 output_format="DICT", report_spec="Actor-Roles", page_size=10,
@@ -987,7 +1001,7 @@ class TestActorManager:
             assert isinstance(response, list)
             assert len(response) > 0
             team_report = response[0]
-            assert team_report.get('displayName') == "Test Team for Report"
+            assert team_report.get('Display Name') == "Test Team for Report"
             members = team_report.get('Members') or []
             assert isinstance(members, list)
             assert len(members) > 0

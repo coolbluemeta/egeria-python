@@ -1,3 +1,5 @@
+___
+
 ## Link Solution Design
 > Link a solution blueprint to a referenceable element.
 >
@@ -128,3 +130,5 @@
 
 >	**Default Value**: false
 
+
+___

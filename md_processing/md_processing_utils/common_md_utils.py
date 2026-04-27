@@ -447,6 +447,52 @@ def set_collection_manager_body(object_type: str, qualified_name: str, attribute
     return prop_bod
 
 
+def set_actor_manager_prop_body(object_type: str, qualified_name: str, attributes: dict) -> dict:
+    """
+    Build the INNER element-specific Properties body for Actor Manager elements.
+    """
+    prop_bod = set_element_prop_body(object_type, qualified_name, attributes)
+
+    # Handle Person
+    if "Person" in object_type and "Role" not in object_type:
+        prop_bod.update({
+            "courtesyTitle": attributes.get('Courtesy Title', {}).get('value', None),
+            "employeeNumber": attributes.get('Employee Number', {}).get('value', None),
+            "employeeType": attributes.get('Employee Type', {}).get('value', None),
+            "fullName": attributes.get('Full Name', {}).get('value', None),
+            "givenNames": attributes.get('Given Names', {}).get('value', None),
+            "initials": attributes.get('Initials', {}).get('value', None),
+            "jobTitle": attributes.get('Job Title', {}).get('value', None),
+            "preferredLanguage": attributes.get('Preferred Language', {}).get('value', None),
+            "pronouns": attributes.get('Pronouns', {}).get('value', None),
+            "residentCountry": attributes.get('Resident Country', {}).get('value', None),
+            "surname": attributes.get('Surname', {}).get('value', None),
+            "timeZone": attributes.get('Time Zone', {}).get('value', None),
+        })
+
+    # Handle Team and Organization
+    if "Team" in object_type or "Organization" in object_type:
+        if "Role" not in object_type:
+            prop_bod["teamType"] = attributes.get('Team Type', {}).get('value', None)
+
+    # Handle Actor Roles
+    if "Role" in object_type:
+        prop_bod["scope"] = attributes.get('Scope', {}).get('value', None)
+        if "Person Role" in object_type or "Team Role" in object_type:
+            # headCount is an integer
+            headcount_entry = attributes.get('Headcount', {})
+            headcount = headcount_entry.get('value', 0)
+            try:
+                if headcount is not None:
+                    prop_bod["headCount"] = int(headcount)
+                else:
+                    prop_bod["headCount"] = 0
+            except (ValueError, TypeError):
+                prop_bod["headCount"] = 0
+
+    return prop_bod
+
+
 def set_product_body(object_type: str, qualified_name: str, attributes: dict) -> dict:
     prop_bod = set_element_prop_body(object_type, qualified_name, attributes)
     prop_bod["identifier"] = attributes.get('Identifier', {}).get('value', None)

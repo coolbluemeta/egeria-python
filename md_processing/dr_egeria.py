@@ -32,7 +32,7 @@ from md_processing.v2 import (
     CollectionManagerProcessor, CSVElementProcessor, CollectionLinkProcessor,
     GovernanceProcessor, GovernanceLinkProcessor, GovernanceContextProcessor,
     FeedbackProcessor, TagProcessor, ExternalReferenceProcessor, FeedbackLinkProcessor,
-    ViewProcessor
+    ViewProcessor, ActorManagerProcessor, ActorManagerLinkProcessor
 )
 
 from pyegeria import EgeriaTech, PyegeriaException, print_basic_exception, print_validation_error
@@ -75,6 +75,33 @@ EGERIA_USER_PASSWORD = os.environ.get("EGERIA_USER_PASSWORD", "secret")
 
 # Legacy environment variables (deprecated, kept for backward compatibility)
 EGERIA_HOME_GLOSSARY_GUID = os.environ.get("EGERIA_HOME_GLOSSARY_GUID", None)
+
+
+def register_actor_manager_processors(register_processor: Callable[[str, Type[AsyncBaseCommandProcessor]], None]) -> None:
+    """Register actor manager processors from compact command specs."""
+    from md_processing.md_processing_utils.md_processing_constants import (
+        COMMAND_DEFINITIONS,
+        load_commands,
+    )
+
+    load_commands()
+    specs = COMMAND_DEFINITIONS.get("Command Specifications", {})
+    link_verbs = {"Link", "Attach", "Add", "Detach", "Unlink", "Remove"}
+
+    for base_name, spec in specs.items():
+        if not isinstance(spec, dict):
+            continue
+        if spec.get("family") != "Actor Manager":
+            continue
+        
+        # Determine processor class
+        verb = base_name.split(" ", 1)[0]
+        if verb in link_verbs:
+            processor_cls = ActorManagerLinkProcessor
+        else:
+            processor_cls = ActorManagerProcessor
+            
+        register_processor(base_name, processor_cls)
 
 
 def register_solution_architect_processors(register_processor: Callable[[str, Type[AsyncBaseCommandProcessor]], None]) -> None:
@@ -242,6 +269,9 @@ def setup_dispatcher(client: EgeriaTech) -> V2Dispatcher:
 
     # Governance (spec-driven to keep coverage aligned with compact commands)
     register_governance_processors(reg)
+    # Actor Manager (spec-driven to keep coverage aligned with compact commands)
+    register_actor_manager_processors(reg)
+
     # Reporting / View
     reg("View Report", ViewProcessor)
 

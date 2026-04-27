@@ -1,3 +1,5 @@
+___
+
 ## Link Agreement Item
 > Attach or detach an agreement to an element referenced in its definition. Agreement item can be any referenceable element.
 >
@@ -60,6 +62,10 @@
 
 >	**Description**: A dictionary of property:value pairs describing obligations.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Journal Entry
 >	**Input Required**: False
@@ -84,6 +90,10 @@
 
 >	**Description**: A dictionary of property:value pairs describing entitlements.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Restrictions
 >	**Input Required**: False
@@ -92,6 +102,10 @@
 
 >	**Description**: A dictionary of property:value pairs describing restrictions.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Usage Measurements
 >	**Input Required**: False
@@ -99,6 +113,10 @@
 >	**Attribute Type**: Dictionary
 
 >	**Description**: A dictionary of property:value pairs describing usage measurements.
+
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
 
 
 ### Effective From
@@ -182,3 +200,5 @@
 
 >	**Default Value**: false
 
+
+___

@@ -13,16 +13,17 @@ Dr.Egeria is a Markdown-based processing engine for Egeria. It allows users to i
     - [Directives](#directives)
     - [Planned Elements](#planned-elements)
     - [Reference Resolution](#reference-resolution)
-4. [CLI Utility: dr_egeria](#cli-utility-dr_egeria)
-5. [Supporting Utilities](#supporting-utilities)
+4. [Supported Command Families](#supported-command-families)
+5. [CLI Utility: dr_egeria](#cli-utility-dr_egeria)
+6. [Supporting Utilities](#supporting-utilities)
     - [Template Generation (`gen_md_cmd_templates`)](#template-generation-gen_md_cmd_templates)
     - [Help Documentation (`gen_dr_help`)](#help-documentation-gen_dr_help)
     - [Command Search (`dr_egeria_help`)](#command-search-dr_egeria_help)
     - [Report Specification (`gen_report_specs`)](#report-specification-gen_report_specs)
     - [Spec Validation (`validate_compact_specs`)](#spec-validation-validate_compact_specs)
     - [Migration Tool (`migrate_dr_egeria.py`)](#migration-tool-migrate_dr_egeriapy)
-6. [Advanced Configuration](#advanced-configuration)
-7. [Jupyter Notebook Support](#jupyter-notebook-support)
+7. [Advanced Configuration](#advanced-configuration)
+8. [Jupyter Notebook Support](#jupyter-notebook-support)
 
 ---
 
@@ -118,6 +119,27 @@ Dr.Egeria attempts to resolve element references (like a parent Glossary for a T
 2. **Reference Name**: A structured name in the format `Type::QualifiedName` (e.g., `Glossary::PDR::SalesGlossary`). This is the preferred way to refer to elements in Link commands.
 3. **Qualified Name**: The unique string path for the element.
 4. **Display Name**: The human-readable name (ambiguous matches will result in warnings/errors).
+
+---
+
+## Supported Command Families
+
+Dr.Egeria organizes its commands into "families," each corresponding to a specific area of metadata management. You can discover all available commands for each family using the `gen_md_cmd_templates` and `gen_dr_help` utilities.
+
+### Core Families
+
+- **Glossary**: Manage business terms, categories, and their relationships (e.g., `Create Glossary`, `Create Term`, `Link Term to Category`).
+- **Data Designer**: Define data structures, fields, data classes, and value specifications (e.g., `Create Data Structure`, `Create Data Field`).
+- **Actor Manager**: Manage organizational metadata, including people, teams, organizations, and roles (e.g., `Create Person`, `Create Team`, `Create Organization`, `Create Person Role`). Supports linking team structures and role appointments.
+- **Project**: Manage projects and their dependencies or hierarchies (e.g., `Create Project`, `Link Project Dependency`).
+- **Collection Manager**: Manage various collections of elements, including Folders, Products, and Agreements (e.g., `Create Collection Folder`, `Create Digital Product`).
+- **Solution Architect**: Manage solution blueprints, components, and information supply chains.
+- **Governance Officer**: Manage governance definitions, policies, and responsibilities.
+
+### Enrichment and Metadata Management
+
+- **Feedback**: Add comments, ratings, and informal tags to any Egeria element (e.g., `Add Comment`, `Attach Tag`).
+- **External Reference**: Link Egeria elements to external resources, media, or cited documents (e.g., `Create External Reference`, `Link Media Reference`).
 
 ---
 

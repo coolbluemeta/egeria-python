@@ -131,9 +131,12 @@ def load_compact_specs_from_dir(dir_path: str, families_allowlist: Iterable[str]
             continue
 
     for fname, data in loaded_files:
+        file_family = data.get("family", "")
         file_commands = data.get("commands", {})
 
         for cname, cdef in file_commands.items():
+            if not cdef.get("family"):
+                cdef["family"] = file_family
             fam = cdef.get("family")
             if families and fam not in families:
                 continue

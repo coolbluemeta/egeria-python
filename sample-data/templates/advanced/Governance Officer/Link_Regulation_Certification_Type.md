@@ -1,3 +1,5 @@
+___
+
 ## Link Regulation Certification Type
 > A certification type addressing a specific regulation.
 
@@ -124,3 +126,5 @@
 
 >	**Default Value**: false
 
+
+___

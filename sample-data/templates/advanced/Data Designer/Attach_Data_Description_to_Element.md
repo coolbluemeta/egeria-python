@@ -1,3 +1,5 @@
+___
+
 ## Attach Data Description to Element
 > Connect an existing data describing collection to an element using the DataDescription relationship (0580).
 
@@ -129,3 +131,5 @@
 
 >	**Default Value**: false
 
+
+___

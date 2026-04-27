@@ -1,3 +1,5 @@
+___
+
 ## Create Rating
 > Creates a star rating on a metadata element.
 
@@ -85,7 +87,7 @@
 >	**Description**: Link to supporting information
 
 
-## Search Keywords
+### Search Keywords
 >	**Input Required**: False
 
 >	**Attribute Type**: Simple List
@@ -184,6 +186,10 @@
 
 >	**Alternative Labels**: classification
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Is Own Anchor
 >	**Input Required**: False
@@ -260,6 +266,10 @@
 
 >	**Description**: Additional user defined values organized as name value pairs in a dictionary.
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
 
 ### Supplementary Properties
 >	**Input Required**: False
@@ -268,3 +278,9 @@
 
 >	**Description**: Provide supplementary information to the element using the structure of a glossary term
 
+>	| Parameter Name | Parameter Value |
+>	|---|---|
+>	| example_key | example_value |
+
+
+___

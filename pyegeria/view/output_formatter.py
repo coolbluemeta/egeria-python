@@ -815,8 +815,10 @@ def generate_entity_md(elements: List[Dict],
     base_columns = columns_struct['formats'].get('attributes') if columns_struct else None
 
     for element in elements:
-        if element is None:
-                continue
+        if not isinstance(element, dict):
+            if isinstance(element, str):
+                elements_md += element
+            continue
         guid = element.get('elementHeader', {}).get('guid')
 
         # Prefer new behavior: extractor returns an updated columns_struct with values
@@ -990,6 +992,8 @@ def generate_entity_md_table(elements: List[Dict],
     details_md = ""
 
     for element in elements:
+        if not isinstance(element, dict):
+            continue
         guid = element.get('elementHeader', {}).get('guid', None)
 
         # Extractor returns columns_struct with values when possible
@@ -1537,7 +1541,7 @@ def _extract_name_from_relationship_item(item: Any) -> Optional[str]:
     return None
 
 
-def extract_mermaid_only(elements: Union[Dict, List[Dict]]) -> Union[str, List[str]]:
+def extract_mermaid_only(elements: Union[Dict, List[Dict]]) -> str:
     """
     Extract mermaid graph data from elements.
 
@@ -1545,26 +1549,24 @@ def extract_mermaid_only(elements: Union[Dict, List[Dict]]) -> Union[str, List[s
         elements: Dictionary or list of dictionaries containing element data
 
     Returns:
-        String or list of strings containing mermaid graph data
+        String containing mermaid graph data
     """
     if isinstance(elements, dict):
-        mer = elements.get("mermaidGraph", None)
-        if mer:
-            norm_mermaid = _normalize_mermaid_graph(mer)
-            return f"\n```mermaid\n{norm_mermaid}\n```"
-        else:
-            return "---"
+        elements = [elements]
 
     result = []
     for element in elements:
-        mer = element.get("mermaidGraph", "---")
-        if mer and mer != "---":
+        if isinstance(element, str):
+            result.append(element)
+            continue
+        mer = element.get("mermaidGraph", None)
+        if mer:
             norm_mermaid = _normalize_mermaid_graph(mer)
-            mer_out = f"\n\n```mermaid\n{norm_mermaid}\n```"
+            mer_out = f"```mermaid\n{norm_mermaid}\n```"
         else:
             mer_out = "---"
         result.append(mer_out)
-    return result
+    return "\n\n".join(result)
 
 def extract_basic_dict(elements: Union[Dict, List[Dict]]) -> Union[Dict, List[Dict]]:
     """

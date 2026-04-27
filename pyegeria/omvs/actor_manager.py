@@ -2,7 +2,7 @@
 SPDX-License-Identifier: Apache-2.0
 Copyright Contributors to the ODPi Egeria project.
 
-    Manage external references to a variety of artifacts.
+    Manage actor profiles, roles, and organizational structures.
 
 """
 
@@ -25,8 +25,14 @@ from pyegeria.core.utils import dynamic_catch
 ACTOR_PROFILE = ["ActorProfile", "PersonRole", "TeamRole", "Organization",
                  "UserIdentity","ITProfile"]
 
+ACTOR_PROFILE_PROPERTIES_LIST = ["ActorProfileProperties", "PersonProperties", "TeamProperties",
+                                 "OrganizationProperties", "ITProfileProperties"]
+
 # ACTOR = ["Actor", "PersonRole", "TeamRole", "ITProfileRole"]
 ACTOR_ROLE = ["ActorRole", "PersonRole", "TeamRole", "ITProfileRole", "TeamMember", "TeamLeader"]
+
+ACTOR_ROLE_PROPERTIES_LIST = ["ActorRoleProperties", "PersonRoleProperties", "TeamRoleProperties",
+                              "ITProfileRoleProperties"]
 
 from pyegeria.core._server_client import ServerClient
 
@@ -133,7 +139,7 @@ class ActorManager(ServerClient):
         url = f"{self.command_root}/actor-profiles"
         # Handle Optional body parameter
         body_to_use = body if body is not None else {}
-        return await self._async_create_element_body_request(url, ["ActorProfileProperties"], body_to_use)
+        return await self._async_create_element_body_request(url, ACTOR_PROFILE_PROPERTIES_LIST, body_to_use)
 
     @dynamic_catch
     def create_actor_profile(self, body: Optional[dict | NewElementRequestBody] = None) -> str:
@@ -363,7 +369,7 @@ class ActorManager(ServerClient):
         """
 
         url = (f"{self.command_root}/actor-profiles/{actor_profile_guid}/update")
-        await self._async_update_element_body_request(url, ["ActorProfileProperties"], body)
+        await self._async_update_element_body_request(url, ACTOR_PROFILE_PROPERTIES_LIST, body)
 
     @dynamic_catch
     def update_actor_profile(self, actor_profile_guid: str, body: dict | UpdateElementRequestBody) -> None:
@@ -1308,7 +1314,7 @@ class ActorManager(ServerClient):
     """
 
         url = f"{self.command_root}/actor-roles"
-        return await self._async_create_element_body_request(url, ["ActorRoleProperties"], body)
+        return await self._async_create_element_body_request(url, ACTOR_ROLE_PROPERTIES_LIST, body)
 
     @dynamic_catch
     def create_actor_role(self, body: Optional[dict | NewElementRequestBody] = None) -> str:
@@ -1538,7 +1544,7 @@ class ActorManager(ServerClient):
         """
 
         url = (f"{self.command_root}/actor-roles/{actor_role_guid}/update")
-        await self._async_update_element_body_request(url, ["ActorRoleProperties"], body)
+        await self._async_update_element_body_request(url, ACTOR_ROLE_PROPERTIES_LIST, body)
 
     @dynamic_catch
     def update_actor_role(self, actor_role_guid: str, body: dict | UpdateElementRequestBody) -> None:
@@ -4524,7 +4530,7 @@ class ActorManager(ServerClient):
 
 
         """
-        url = f"{self.command_root}/{actor_profile_guid}/contribution-records"
+        url = f"{self.command_root}/actor-profiles/{actor_profile_guid}/contribution-records"
         return await self._async_create_attachment_body_request(url, ["ContributionRecordProperties"], body)
 
     @dynamic_catch
@@ -4659,7 +4665,7 @@ class ActorManager(ServerClient):
           "forDuplicateProcessing" : false
         }
         """
-        url = f"{self.command_root}/contribution-records/{contribution_record_guid}/update"
+        url = f"{self.command_root}/contribution-records/{contribution_record_guid}"
         await self._async_update_element_body_request(url, ["ContributionRecordProperties"], body)
 
     @dynamic_catch

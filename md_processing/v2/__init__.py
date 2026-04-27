@@ -34,3 +34,4 @@ from .feedback import (
     ExternalReferenceProcessor, FeedbackLinkProcessor
 )
 from .view import ViewProcessor
+from .actor_manager import ActorManagerProcessor, ActorManagerLinkProcessor
